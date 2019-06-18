@@ -13,7 +13,9 @@ function padTime(num) {
 
 fs.emptyDir('pub')
 .then(() => {
-    //console.log('Empty pub dir success...');
+
+    fs.copySync('./assets', './pub');
+
     let posts = [];
     fs.readdirSync(contentDir).forEach(file => {
         let contentFile = contentDir + file;
@@ -48,8 +50,10 @@ fs.emptyDir('pub')
         //console.log(gitlog);
         posts.push(gitlog);
     });
+
     posts.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1);
     //console.log(posts);
+
     let content = '';
     posts.forEach(post => {
         let imgHtml = '';
@@ -63,6 +67,7 @@ fs.emptyDir('pub')
         content += `<div class="post">${imgHtml}<div class="date-wrapper"><span class="date">${post.day}</span> <span class="time">${post.time}</span></div><h3>${post.subject}</h3>${bodyHtml}</div>`;
     });
     //console.log(content);
+
     let htmlTemplate = './assets/index.html';
     if (fs.existsSync(htmlTemplate)) {
         let html = fs.readFileSync(htmlTemplate, 'utf8');
