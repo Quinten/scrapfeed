@@ -49,10 +49,29 @@ fs.emptyDir('pub')
         posts.push(gitlog);
     });
     posts.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1);
-    console.log(posts);
+    //console.log(posts);
+    let content = '';
+    posts.forEach(post => {
+        let imgHtml = '';
+        if (post.file) {
+            imgHtml = `<div class="image-wrapper"><img src="${post.file}" alt="${post.subject}" /></div>`;
+        }
+        let bodyHtml = '';
+        if (post.body) {
+            bodyHtml = `<p>${post.body}</p>`;
+        }
+        content += `<div class="post">${imgHtml}<div class="date-wrapper"><span class="date">${post.day}</span> <span class="time">${post.time}</span></div><h3>${post.subject}</h3>${bodyHtml}</div>`;
+    });
+    //console.log(content);
+    let htmlTemplate = './assets/index.html';
+    if (fs.existsSync(htmlTemplate)) {
+        let html = fs.readFileSync(htmlTemplate, 'utf8');
+        html = html.replace('{{content}}', content);
+        fs.writeFileSync('./pub/index.html', html, {flag: 'w'});
+    } else {
+        console.log('No ./assets/index.html found');
+    }
 })
 .catch(err => {
   console.error(err)
 });
-
-//console.log(process.cwd());
