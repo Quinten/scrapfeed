@@ -25,8 +25,9 @@ fs.emptyDir('pub')
             return;
         }
         gitlog = gitlog.slice(0, -1);
-        gitlog = gitlog.replace('\n', '');
+        gitlog = gitlog.replace(/(?:\r\n|\r|\n)/g, '');
         gitlog = '[' + gitlog + ']';
+        //console.log(gitlog);
         gitlog = JSON.parse(gitlog);
         gitlog = gitlog[0];
         let dateObj = new Date(gitlog.date);
