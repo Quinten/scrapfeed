@@ -13,7 +13,7 @@ function padTime(num) {
 
 fs.emptyDir('pub')
 .then(() => {
-    console.log('Empty pub dir success...');
+    //console.log('Empty pub dir success...');
     let posts = [];
     fs.readdirSync(contentDir).forEach(file => {
         let contentFile = contentDir + file;
@@ -39,15 +39,17 @@ fs.emptyDir('pub')
                 if (err) {
                     console.log(err);
                 }
-                if (info) {
-                    console.log(info);
-                }
+                //if (info) {
+                    //console.log(info);
+                //}
             });
             gitlog.file = fileName + '.webp'; // todo: allow multiple files
         }
-        console.log(gitlog);
+        //console.log(gitlog);
         posts.push(gitlog);
     });
+    posts.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1);
+    console.log(posts);
 })
 .catch(err => {
   console.error(err)
