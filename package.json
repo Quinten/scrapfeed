@@ -1,5 +1,5 @@
 {
-  "name": "scraps",
+  "name": "scrapfeed",
   "version": "0.0.1",
   "description": "microblogging with git messages",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Quinten/scraps.git"
+    "url": "git+https://github.com/Quinten/scrapfeed.git"
   },
   "author": "Quinten Clause",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Quinten/scraps/issues"
+    "url": "https://github.com/Quinten/scrapfeed/issues"
   },
-  "homepage": "https://github.com/Quinten/scraps#readme",
+  "homepage": "https://github.com/Quinten/scrapfeed#readme",
   "dependencies": {
     "fs-extra": "^8.0.1",
     "sharp": "^0.22.1"
