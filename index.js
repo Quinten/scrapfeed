@@ -1,3 +1,14 @@
 #!/usr/bin/env node
 
-console.log('This is a log.');
+const fs = require('fs-extra');
+
+fs.emptyDir('pub')
+.then(() => {
+    console.log('Empty pub dir success...');
+})
+.catch(err => {
+  console.error(err)
+});
+
+console.log('Done!');
+//console.log(process.cwd());

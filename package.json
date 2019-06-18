@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Quinten/scraps/issues"
   },
-  "homepage": "https://github.com/Quinten/scraps#readme"
+  "homepage": "https://github.com/Quinten/scraps#readme",
+  "dependencies": {
+    "fs-extra": "^8.0.1"
+  }
 }
