@@ -3,6 +3,7 @@
 const fs = require('fs-extra');
 const util = require('util');
 const { execSync } = require('child_process');
+const sharp = require('sharp');
 
 const contentDir = './content/';
 
@@ -26,11 +27,24 @@ fs.emptyDir('pub')
         gitlog = '[' + gitlog + ']';
         gitlog = JSON.parse(gitlog);
         gitlog = gitlog[0];
-        gitlog.file = file; // todo: allow multiple files
         let dateObj = new Date(gitlog.date);
         gitlog.timestamp = dateObj.getTime();
         gitlog.day = dateObj.toDateString();
         gitlog.time = padTime(dateObj.getHours()) + ':' + padTime(dateObj.getMinutes());
+        let fileName = file.replace(/\.[^/.]+$/, '');
+        if (file.indexOf('.png') > -1 || file.indexOf('.jpg') > -1 || file.indexOf('.jpeg') > -1) {
+            sharp(contentFile)
+            .resize(512, 512)
+            .toFile('./pub/' + fileName + '.webp', (err, info) => {
+                if (err) {
+                    console.log(err);
+                }
+                if (info) {
+                    console.log(info);
+                }
+            });
+            gitlog.file = fileName + '.webp'; // todo: allow multiple files
+        }
         console.log(gitlog);
         posts.push(gitlog);
     });
