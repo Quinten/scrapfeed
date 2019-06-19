@@ -1,6 +1,6 @@
 {
   "name": "scrapfeed",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "microblogging with git messages",
   "main": "index.js",
   "bin": "./index.js",

@@ -38,7 +38,7 @@ fs.emptyDir('pub')
         if (file.indexOf('.png') > -1 || file.indexOf('.jpg') > -1 || file.indexOf('.jpeg') > -1) {
             sharp(contentFile)
             .resize(512, 512)
-            .toFile('./pub/' + fileName + '.webp', (err, info) => {
+            .toFile('./pub/' + fileName + '.jpg', (err, info) => {
                 if (err) {
                     console.log(err);
                 }
@@ -46,7 +46,7 @@ fs.emptyDir('pub')
                     //console.log(info);
                 //}
             });
-            gitlog.file = fileName + '.webp'; // todo: allow multiple files
+            gitlog.file = fileName + '.jpg'; // todo: allow multiple files
         }
         //console.log(gitlog);
         posts.push(gitlog);
